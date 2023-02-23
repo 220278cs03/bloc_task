@@ -36,8 +36,8 @@ class _ValidatePageState extends State<ValidatePage> {
         },
         listener: (context, state) async {
           if (state.check) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Gulnoza")));
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text("Gulnoza")));
           }
         },
         child: Padding(
@@ -59,10 +59,30 @@ class _ValidatePageState extends State<ValidatePage> {
                 ),
               ),
               BlocBuilder<ValidateCubit, ValidateState>(
-                builder: (context, state) {
-                  return state.check ? const SizedBox.shrink() : const Text("Error", style: TextStyle(color: Colors.red),);
-                },
-              )
+                  builder: (context, state) {
+                return state.check
+                    ? const SizedBox.shrink()
+                    : const Text(
+                        "Error",
+                        style: TextStyle(color: Colors.red),
+                      );
+              }),
+              // BlocConsumer<ValidateCubit, ValidateState>(
+              //     builder: (context, state) {
+              //   return state.check
+              //       ? const SizedBox.shrink()
+              //       : const Text(
+              //           "Error",
+              //           style: TextStyle(color: Colors.red),
+              //         );
+              // }, listenWhen: (prev, current) {
+              //   return current.check;
+              // }, listener: (context, state) async {
+              //   if (state.check) {
+              //     ScaffoldMessenger.of(context)
+              //         .showSnackBar(const SnackBar(content: Text("Gulnoza")));
+              //   }
+              // })
             ],
           ),
         ),
